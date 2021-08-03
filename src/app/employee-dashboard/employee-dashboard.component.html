@@ -1,0 +1,77 @@
+<nav class="navbar navbar-light bg-dark">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">EMPLOYEE PORTAL</h1>
+        <div class="d-flex">
+            <button (click)="clickAddProject()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success"> Add Project </button>
+        </div>
+    </div>
+</nav>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col"> Project ID </th>
+            <th scope="col"> Date </th>
+            <th scope="col"> Project Name </th>
+            <th scope="col"> Utilization Hours</th>
+            <th scope="col"> Remark</th>
+            <th scope="col"> Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of employeeData">
+            <td>SR100{{row.id}}</td>
+            <td>{{row.date}}</td>
+            <td>{{row.projectName}}</td>
+            <td>{{row.utilizationHours}}</td>
+            <td>{{row.remark}}</td>
+            <td>
+                <button (click)="onEdit(row)" style="color: aliceblue" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
+                <button (click)="deleteEmployee(row)" class="btn btn-danger mx-3">Clear</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Employee Project Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="formValue">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Date</label>
+                        <input type="date" formControlName="date" class="form-control" max="2021-08-04" id="date" aria-describedby="emailHelp">
+                        <!-- <span style="color:red" *ngIf="date && date.invalid"> Date is required</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Project Name</label>
+                        <select class="form-select" formControlName="projectName" aria-label="Default select example">
+                            <option selected>Open this project menu</option>
+                            <option value="Employee Portal" >Employee Portal</option>
+                            <option value="Complaint Portal">Complaint Portal</option>
+                            <option value="E-Commerce Portal">E-Commerce Portal</option>
+                          </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Utilization Hours</label>
+                        <input type="number" min=0 max=8 class="form-control" formControlName="utilizationHours" id="exampleInputPassword1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Remark</label>
+                        <input type="text" class="form-control" formControlName="remark" id="exampleInputPassword1">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" *ngIf="showAdd" (click)="postEmployeeDetails()" class="btn btn-primary">Add</button>
+                <button type="button" *ngIf="showUpdate" (click)="updateEmployeeDetails()" class="btn btn-primary">Update</button>
+            </div>
+        </div>
+    </div>
+</div>

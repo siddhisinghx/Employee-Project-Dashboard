@@ -1,0 +1,25 @@
+{
+  "employees": [
+    {
+      "id": 1,
+      "date": "2021-08-01",
+      "projectName": "Employee Portal",
+      "utilizationHours": 1,
+      "remark": "High Level Design"
+    },
+    {
+      "id": 2,
+      "date": "2021-08-01",
+      "projectName": "E-Commerce Portal",
+      "utilizationHours": 4,
+      "remark": "In Progress"
+    },
+    {
+      "id": 3,
+      "date": "2021-08-02",
+      "projectName": "Complaint Portal",
+      "utilizationHours": 2,
+      "remark": "In Progress"
+    }
+  ]
+}
